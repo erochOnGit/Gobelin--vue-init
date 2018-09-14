@@ -30,7 +30,7 @@ export default {
   background: blue;
   padding: 5px;
   width: 30vw;
-  color: red;
+  color: blue;
   box-shadow: 0px 0px 50px #ffffffff;
 }
 

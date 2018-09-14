@@ -1,13 +1,23 @@
 <template>
-    <ul class="message-list"  v-on:click="select">
+    <ul class="message-list"  @click.prevent="select">
         <MessageListMessage v-for="(message,index)  in messages" :key="index" :message="message" />
     </ul>
 </template>
 
 <script>
 import MessageListMessage from "@/components/MessageListMessage"
+import store from "../store"
+
 import Vue from "vue"
 export default {
+    data: ()=>{
+      return {
+        messageList: null
+      }
+    },
+    computed: {
+      users: () => store.users
+    },
     props: ['messages'],
     components: {
         MessageListMessage
@@ -20,18 +30,34 @@ export default {
       }
     },
     methods:{
-        select (){
+      select (e) {
+        e.preventDefault();
           var sel;
-
+          
       if (window.getSelection) {
-        // Non-IE browsers
-        sel = window.getSelection();
-        alert(sel)
+          let lis = this.$el.childNodes
+          sel = window.getSelection();
+          let selectedLis = [];
+        if(sel.toString().length>0){
+          lis.forEach((child)=>{
+             sel.toString().includes(child.outerText) ? selectedLis.push(child) : null
+          })
+          selectedLis.forEach((li) => {
+            li.style.background = li.attributes.color.value;
+            li.style.color = "white";
+            li.style.fontStyle = "italic";
+          })
+      } else{
+        lis.forEach((child)=>{
+          child.style.color = "magenta"
+          child.style.background = "magenta"
+        })
+      }
       } else if (document.selection && range.select) {
         // IE
-        console.log("caca")
         range.select();
       }
+     
     }
     }
 }
@@ -39,10 +65,11 @@ export default {
 
 <style>
 .message-list {
-  height: 80%;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 0;
+  color: magenta;
 }
 
 /* width */

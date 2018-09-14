@@ -1,39 +1,41 @@
 <template>
-    <li :value="message.username" class="message" v-on:click="select">
-        {{ message.user.username }}: {{ message.text }}
+    <li :value="message.username" class="message" :color="color" :style="ourmsg">
+        <span class="username">
+            {{ message.user.username }}
+        </span> :  
+        <span class="text">
+            {{ message.text }}
+        </span>
         <!-- <SelectionableText :message="message.user.username"/>
         <SelectionableText :message="message.text"/> -->
     </li>
 </template>
 
 <script>
-import SelectionableText from "@/components/SelectionableText.vue"
-
+// import SelectionableText from "@/components/SelectionableText.vue"
+import store from '../store'
 export default {
     components: {
-      SelectionableText
+    //   SelectionableText
     },
-    props: ['message'],
-    methods:{
-        select (){
-          var sel;
-
-      if (window.getSelection) {
-        // Non-IE browsers
-        sel = window.getSelection();
-        alert(sel)
-      } else if (document.selection && range.select) {
-        // IE
-        console.log("caca")
-        range.select();
+   computed: {
+    user () {
+      return store.users.find((user) => user.username === this.message.user.username)
+    },
+    color () {
+      return this.user.color
+    },
+    ourmsg () {
+     if(store.user.username === this.message.user.username){
+         return {
+           float: "right",
+           display: "flex",
+           flexDirection: "row-reverse"
+         } 
       }
     }
-    }
-    // watch: {
-    //   message(mes){
-    //     console.log(this)
-    //   }
-    // }
+   },
+    props: ['message'],
 }
 </script>
 
@@ -42,5 +44,6 @@ export default {
   list-style-type: none;
   display: flex;
   width: 60%;
+  margin: 5px;
 }
 </style>

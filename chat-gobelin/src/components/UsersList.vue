@@ -45,5 +45,9 @@ export default {
   background: white;
   margin: 0px 30px;
   overflow: scroll;
+  color: white;
+}
+.user-list li:hover {
+  color: black;
 }
 </style>

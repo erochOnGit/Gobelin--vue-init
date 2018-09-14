@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import SelectionableText from "@/components/SelectionableText.vue"
+// import SelectionableText from "@/components/SelectionableText.vue"
 import LoginForm from "@/components/LoginForm"
 import store from "../store"
 
 export default {
   components: {
-    SelectionableText,
+    // SelectionableText,
     LoginForm
   },
   methods: {
