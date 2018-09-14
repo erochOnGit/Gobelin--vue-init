@@ -20,8 +20,7 @@ export default {
   methods: {
     removeReinsurance () {
       this.$el.childNodes[2].style.display= "none"
-      console.log(this.$el.childNodes)
-
+      this.$el.childNodes[4].childNodes[0].childNodes[4].style.display= "none"
     }
   }
 }
