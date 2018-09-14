@@ -1,6 +1,6 @@
 <template>
-    <li>
-        {{user}}
+    <li class="user">
+        {{user.username}}
     </li>
 </template>
 
@@ -10,3 +10,13 @@
         props: ['user']
     }
 </script>
+
+<style>
+.user {
+  list-style-type: none;
+  transition: all 2s;
+}
+.user:hover {
+  opacity: 1;
+}
+</style>

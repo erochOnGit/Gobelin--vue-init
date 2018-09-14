@@ -1,8 +1,9 @@
 <template>
-    <div>
-      coucou je suis le chat
+    <div class="chat-view">
       <UsersList/>
-      <ChatBox/>
+      <div class="chat-container">
+        <ChatBox/>
+      </div>
     </div>
 </template>
 
@@ -17,3 +18,37 @@ export default {
     }
 }
 </script>
+
+<style>
+.chat-view {
+  background: black;
+  width: 100vw;
+  height: 100vh;
+  background: url("../assets/fond.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@keyframes revealAfter {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.chat-container {
+  animation-duration: 2s;
+  animation-name: revealAfter;
+  animation-timing-function: ease-in-out;
+  height: 100vh;
+  flex: 1;
+}
+</style>

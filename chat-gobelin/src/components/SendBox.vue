@@ -1,8 +1,7 @@
 <template>
-    <div>
+    <div class="send-box">
         <form action="#" @submit.prevent="onFormSubmit">
             <input type="text" v-model="input">
-            <button>jeanmichelbutton</button>
         </form>
     </div>
 </template>
@@ -22,3 +21,23 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.send-box {
+  position: absolute;
+  top: 45vw;
+  right: 10vw;
+  background: blue;
+  padding: 5px;
+  width: 30vw;
+  color: red;
+  box-shadow: 0px 0px 50px #ffffffff;
+}
+
+input {
+  all: unset;
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+</style>
